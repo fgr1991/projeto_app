@@ -1,0 +1,17 @@
+# Ambiente virtual
+venv/
+
+# Cache Python
+__pycache__/
+
+# Arquivos gerados
+*.xlsx
+*.docx
+outputs_backtest_rf/
+
+# Banco exportado (opcional)
+finance_db.sql
+
+# Arquivos temporários
+.spyproject/
+*.pyc

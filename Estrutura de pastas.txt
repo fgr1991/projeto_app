@@ -1,0 +1,37 @@
+aplicativo_ml/
+│
+├── main.py
+│
+├── ui/
+│   ├── main_window.py
+│   ├── dialogs/
+│   └── resources/
+│
+├── controllers/
+│   └── app_controller.py
+│
+├── services/
+│   ├── model_service.py
+│   ├── backtest_service.py
+│   ├── data_service.py
+│
+├── models/
+│   ├── random_forest_model.py
+│   └── xgboost_model.py
+│
+├── database/
+│   ├── connection.py
+│   └── fundamentals_repository.py
+│
+├── preprocessing/
+│   └── data_cleaner.py
+│
+├── backtest/
+│   ├── backtester.py
+│   └── performance_metrics.py
+│
+├── tests/
+│   └── test_lab.py
+│
+├── requirements.txt
+└── venv/

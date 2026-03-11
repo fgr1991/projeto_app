@@ -1,27 +1,72 @@
-from database.connection import DatabaseConnection
-from database.fundamentals_repository import FundamentalsRepository
+import pandas as pd
+import mysql.connector
 
+# ============================================================
+# CONEXÃO
+# ============================================================
 
-# 🔹 Conexão
-db = DatabaseConnection(
+conexao = mysql.connector.connect(
     host="localhost",
+    port=3306,
     user="root",
     password="Oracle1991#",
-    database="finance_db",
-    port=3306
+    database="finance_db"
 )
 
-connection = db.get_connection()
+print("Conectado ao banco.")
 
-# 🔹 Repository
-repo = FundamentalsRepository(connection)
+# ============================================================
+# DIM TICKERS
+# ============================================================
 
-# 🔹 Buscar TODOS os anos
-df = repo.get_all()
+tickers_df = pd.read_sql("""
+SELECT *
+FROM dim_tickers
+""", conexao)
 
-print("DataFrame completo carregado!")
-print("Shape:", df.shape)
+# ============================================================
+# FUNDAMENTALS COM TICKER
+# ============================================================
 
-df.info()
+fundamentals_df = pd.read_sql("""
+SELECT
+    t.ticker,
+    f.*
+FROM fundamentals f
+JOIN dim_tickers t
+    ON f.ticker_id = t.id
+""", conexao)
 
-db.close()
+# ============================================================
+# PRICES COM TICKER
+# ============================================================
+
+prices_df = pd.read_sql("""
+SELECT
+    t.ticker,
+    p.*
+FROM prices p
+JOIN dim_tickers t
+    ON p.ticker_id = t.id
+""", conexao)
+
+# ============================================================
+# RETURNS COM TICKER
+# ============================================================
+
+returns_df = pd.read_sql("""
+SELECT
+    t.ticker,
+    r.*
+FROM returns r
+JOIN dim_tickers t
+    ON r.ticker_id = t.id
+""", conexao)
+
+# ============================================================
+# FECHAR CONEXÃO
+# ============================================================
+
+conexao.close()
+
+print("Banco carregado em DataFrames.")

@@ -1,0 +1,17 @@
+main_window
+   └── app_controller
+         └── backtest_service
+               ├── data_service
+               │      ├── fundamentals_repository
+               │      │       └── connection
+               │      │
+               │      ├── returns_repository
+               │      │       └── connection
+               │      │
+               │      └── data_preprocessor
+               │
+               ├── model_service
+               │      └── random_forest_model / xgboost_model
+               │
+               └── backtester
+                      └── performance_metrics

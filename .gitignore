@@ -15,3 +15,6 @@ finance_db.sql
 # Arquivos temporários
 .spyproject/
 *.pyc
+
+# Arquivos temporários do LibreOffice/Excel
+.~lock.*
